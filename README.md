@@ -1,1 +1,2 @@
-smartakartan3.0
+# Smarta kartan 3.0
+More info coming...
