@@ -1,0 +1,17 @@
+﻿@model SmartMap.Web.Controllers.RobotsViewModel
+@{
+    Layout = null;
+}
+@if (Model.Host == "www.smartakartan.se")
+{
+<text>User-agent: *
+Sitemap: https://www.smartakartan.se/sitemap.xml
+</text>
+}
+else
+{
+<text>User-agent: *
+Disallow: /
+</text>
+}
+

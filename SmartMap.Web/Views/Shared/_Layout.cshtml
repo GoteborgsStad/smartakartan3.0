@@ -1,0 +1,50 @@
+﻿@using Microsoft.Extensions.Hosting
+@using SmartMap.Web.Util
+@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment hostingEnv
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@functions{
+    public string GetAntiXsrfRequestToken()
+    {
+        return Xsrf.GetAndStoreTokens(Context).RequestToken;
+    }
+}
+<!DOCTYPE html>
+<html lang="@ViewData["languageCode"]" prefix="og: http://ogp.me/ns#">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - @CmsVariable.SiteName</title>
+
+    <meta name="description" content="@ViewData["MetaDescription"]">
+    <meta property="og:site_name" content="@CmsVariable.SiteName">
+    <meta property="og:locale" content="@ViewData["languageTerritory"]">
+    @RenderSection("Head", required: false)
+
+    @if (hostingEnv.IsProduction())
+    {
+        <link rel="stylesheet" asp-href-include="~/dist/reactmain*.bundle.css.gz" />
+    }
+    else
+    {
+        <link rel="stylesheet" asp-href-include="~/dist/reactmain*.bundle.css" />
+    }
+</head>
+<body>
+    @await Component.InvokeAsync("TopBar")
+    @RenderBody()
+    @await Component.InvokeAsync("Footer")
+    @RenderSection("Scripts", required: false)
+@await Component.InvokeAsync("CookieConsent")
+<input type="hidden" id="RequestVerificationToken" name="RequestVerificationToken" value="@GetAntiXsrfRequestToken()">    
+
+    @if (hostingEnv.IsProduction())
+    {
+        <script asp-src-include="~/dist/reactmain*.bundle.js.gz"></script>
+        @await Html.PartialAsync("_GoogleAnalytics")
+    }
+    else
+    {
+        <script asp-src-include="~/dist/reactmain*.bundle.js"></script>
+    }
+</body>
+</html>

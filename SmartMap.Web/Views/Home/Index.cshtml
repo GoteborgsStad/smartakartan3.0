@@ -1,0 +1,22 @@
+﻿@using SmartMap.Web.Util
+@model SmartMap.Web.ViewModels.HomeViewModel
+
+@{
+    ViewData["Title"] = "Start";
+    ViewData["MetaDescription"] = StringHelper.StripHtml(Model.WelcomeContent);
+}
+
+@section head {
+    @await Html.PartialAsync("_ogp", Model.Ogp)
+}
+
+<div class="main-bg pb-5 start-page">
+    <div class="container pt-5">
+        <main id="main" class="pb-3 mt-4">
+            <div class="mb-3">
+                @Html.Raw(Model.WelcomeContent)
+            </div>
+            <div id="startpage-container"></div>
+        </main>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+﻿@model SmartMap.Web.ViewModels.FullPageViewModel
+@{
+    ViewData["Title"] = Model.Header;
+    ViewData["MetaDescription"] = Html.Raw(Model.Header);
+}
+
+@section head {
+    @await Html.PartialAsync("_ogp", Model.Ogp)
+}
+
+<div class="container pt-5">
+    <main id="main" class="pb-3 mt-4">
+        <h1 class="display-4">@Model.Header</h1>
+        <div>
+            @Html.Raw(Model.HtmlBody)
+        </div>
+    </main>
+</div>

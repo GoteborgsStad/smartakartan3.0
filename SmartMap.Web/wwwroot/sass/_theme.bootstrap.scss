@@ -1,0 +1,132 @@
+@import "variables";
+
+$sk-blue: #0072ed;
+
+// GENERAL
+h1,.h1 { font-size: 1.85rem; }
+h2,.h2 { font-size: 1.6rem; }
+h3,.h3 { font-size: 1.35rem; }
+h4,.h4 { font-size: 1.1rem; }
+h5,.h5 { font-size: 1.0rem; }
+h6,.h6 { font-size: 1.0rem; }
+
+a {
+    color: $sk-blue;
+}
+
+// BUTTON
+.btn-primary {
+    background-color: $sk-blue;
+}
+.btn-outline-primary {
+    color: #006de1;
+    &:hover {
+        background-color: $gray-300;
+        color: $blue;
+    }
+    .badge-primary {
+        background-color: $sk-blue;
+    }
+}
+.btn-outline-info {
+    &:hover {
+        background-color: $gray-300;
+        color: $cyan;
+    }
+}
+
+// JUMBOTRON
+.jumbotron {
+    background-color: $white;
+}
+
+// TABLE
+.table {
+    th,td {
+        padding: $table-cell-padding-sm;
+    }
+}
+
+// NAVBAR & MENU
+.navbar {
+    background-color: $white;
+    border-bottom: $border-width solid $gray-300;
+    a.navbar-brand {
+        font-family: 'Palanquin', sans-serif;
+        font-size: 1.25rem;
+    }
+    .navbar-nav {
+        .nav-item {
+            padding: 0 0.25rem;
+        }
+    }
+}
+
+.dropdown-menu {
+    border-radius: $border-radius-sm;
+}
+
+@media (max-width: $mobile-max-width) {
+    header {
+        .dropdown-menu {
+            border-width: 0;
+            margin: 0;
+            padding: 0;
+    
+            .dropdown-item {
+                padding: 0.25rem 1rem;
+            }
+        }
+    
+        .navbar-brand {
+            font-size: $h6-font-size;
+        }
+    }
+}
+
+// CARD CUSTOM
+.card-link {
+    color: $body-color;
+    a:hover {
+        text-decoration: none;
+    }
+    &:hover {
+        color: $body-color;
+        .card-title {
+            color: $link-color;
+            text-decoration: underline;
+        }
+    }
+}
+
+// CARD
+.card {
+    border-width: 0;
+    img, svg {
+        height: 8.75rem; // 140px
+    }
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04);
+
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+    }
+}
+@media (max-width: $mobile-max-width) {
+    .card-body {
+        padding: 1.0rem;
+    }
+    .card-title {
+        font-size: 1.15rem;
+    }
+}
+
+// BADGE
+.badge {
+    padding: .4em .6em;
+}
+
+// FOOTER
+footer {
+    background-color: $white;
+}

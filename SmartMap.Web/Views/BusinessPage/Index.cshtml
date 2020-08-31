@@ -1,0 +1,148 @@
+﻿@model SmartMap.Web.ViewModels.BusinessPageViewModel
+@{
+    var header = Model.Header;
+
+    ViewData["Title"] = header;
+    ViewData["MetaDescription"] = header + ", " + Model.ShortDescription;
+}
+
+@section head {
+    @await Html.PartialAsync("_ogp", Model.Ogp)
+}
+
+<script>
+    sk = (typeof sk === 'undefined') ? {} : sk;
+    sk.state = (typeof sk.state === 'undefined') ? [] : sk.state;
+    sk.state = sk.state.concat([
+        { key: 'businesspage.addressandcoordinatesjson', value: @Html.Raw(Json.Serialize(Model.AddressAndCoordinatesJson)) },
+        { key: 'businesspage.header', value: '@header' },
+    ]);
+</script>
+
+<div class="container pt-5 business-page">
+    <main id="main" class="pb-3 mt-4">
+        <div class="row">
+            <div class="col-12 col-md-8 pb-3">
+                @if (Model.HasImage)
+                {
+                    <div class="pb-3">
+                        <img src="@Model.Image.ImageUrl" alt="@Model.Image.AltText" class="img-fluid main-img" />
+                    </div>
+                }
+                <div class="body-font">
+                    <h1>@header</h1>
+                    <h2>@Model.ShortDescription</h2>
+                    @if (Model.OnlineOnly)
+                    {
+                        <strong>@Model.Translations["businesspage.digital-label"]</strong>
+                    }
+                    else
+                    {
+                        var areaCity = string.IsNullOrEmpty(Model.Area) ? Model.City : $"{Model.Area}, {Model.City}";
+                        <strong>@areaCity</strong>
+                    }
+                </div>
+                <div class="btn-group mb-1 mt-2" role="group" aria-label="Link list">
+                    <ul class="list-group list-group-horizontal-sm">
+                        @if (!string.IsNullOrEmpty(Model.InstagramUsername))
+                        {
+                        <li class="list-group-item p-0 border-0">
+                            <a href="https://www.instagram.com/@Model.InstagramUsername" target="_blank" class="pr-3" aria-label="instagram link">
+                                <i class="fab fa-instagram"></i> Instagram
+                            </a>
+                        </li>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.FacebookUrl))
+                        {
+                        <li class="list-group-item p-0 border-0">
+                            <a href="@Model.FacebookUrl" target="_blank" class="pr-3" aria-label="facebook link">
+                                <i class="fab fa-facebook"></i> Facebook
+                            </a>
+                        </li>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.WebsiteUrl))
+                        {
+                        <li class="list-group-item p-0 border-0">
+                            <a href="@Model.WebsiteUrl" target="_blank" class="pr-3" aria-label="website link">
+                                <i class="fas fa-link"></i> @Model.Translations["businesspage.webpage-label"]
+                            </a>
+                        </li>
+                        }
+                        @if (!string.IsNullOrEmpty(Model.Email))
+                        {
+                        <li class="list-group-item p-0 border-0">
+                            <a href="mailto:@(Model.Email)" class="pr-3" aria-label="email">
+                                <i class="fas fa-envelope"></i> @Model.Translations["businesspage.email-label"]
+                            </a>
+                        </li>
+                        }
+                    </ul>
+                </div>
+                <div class="body-font">
+                    <p>
+                        @Html.Raw(Model.Description)
+                    </p>
+                </div>
+                <div>
+                    @if (Model.Tags != null)
+                    {
+                        @foreach (var tag in Model.Tags)
+                        {
+                            // @:&nbsp;
+                            <span class="badge badge-secondary text-capitalize mb-1">@tag</span>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="col-12 col-md-4">
+                @if (Model.AddressAndCoordinates != null)
+                {
+                    <div id="businesspage-container">-</div>
+                    <div>
+                        @foreach (var ac in Model.AddressAndCoordinates)
+                        {
+                            <div>@ac.Address</div>
+                        }
+                    </div>
+                }
+
+                @if (Model.Phone != null)
+                {
+                    <div class="mt-2">
+                        <strong>@Model.Translations["businesspage.phone-label"] <a href="tel:@Model.PhoneFormatted">@Model.PhoneFormatted</a></strong>
+                    </div>
+                }
+
+                @if (Model.OpeningHours != null && !Model.OpeningHours.HideOpeningHours)
+                {
+                    <p>@Model.OpeningHours.TextForOpeningHours</p>
+                    <strong>@Model.Translations["businesspage.openinghours"]</strong>
+                    @if (Model.OpeningHours.AlwaysOpen)
+                    {
+                        <p>@Model.Translations["businesspage.alwaysopen"]</p>
+                    }
+                    else
+                    {
+                        <table class="table table-borderless">
+                            <thead>
+                                <tr>
+                                    <th scope="col">@Model.Translations["businesspage.day"]</th>
+                                    <th scope="col">@Model.Translations["businesspage.time"]</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var d in Model.OpeningHours.Days)
+                                {
+                                    <tr>
+                                        <td>@d.DayText</td>
+                                        <td>@d.HoursText</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                }
+            </div>
+                </div>
+    </main>
+</div>

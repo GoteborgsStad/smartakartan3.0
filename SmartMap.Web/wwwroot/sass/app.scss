@@ -1,0 +1,142 @@
+@import "fonts";
+@import "custom.bootstrap";
+@import "theme.bootstrap";
+@import "variables";
+@import "../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
+@import "../node_modules/@fortawesome/fontawesome-free/scss/solid";
+@import "../node_modules/@fortawesome/fontawesome-free/scss/brands";
+@import "../node_modules/leaflet/dist/leaflet.css";
+@import "../node_modules/leaflet.markercluster/dist/MarkerCluster.css";
+@import "../node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css";
+@import "../node_modules/leaflet-gesture-handling/dist/leaflet-gesture-handling.css";
+
+.main-bg {
+    background-color: $background-color-greyish;
+}
+
+.searchbar-component {
+    .dropdown-menu {
+        z-index: 2000;
+        width: 25rem;
+    }
+}
+@media (max-width: $mobile-max-width) {
+    .searchbar-component {
+        .dropdown-menu {
+            width: 92vw;
+        }
+    }
+}
+
+.align-sub {
+    vertical-align: sub;
+}
+@media (max-width: $mobile-max-width) {
+    .cards-found {
+        font-size: 0.9rem;
+    }
+}
+
+.business-page {
+    .main-img {
+        height: 18.75rem; // 300px
+    }
+    h2 {
+        font-size: 1.1rem;
+    }
+    .body-font {
+        font-family: 'Andada', serif;
+    }
+}
+
+.start-page {
+    .info-over-image {
+        position: absolute;
+        top: .425rem;
+        right: .425rem;
+        z-index: 800;
+    }
+
+    @media (max-width: $mobile-max-width) {
+        h1, .h1 {
+            font-size: 1.15rem;
+        }
+    }
+}
+
+.map-container {
+    .map-element {
+        height: 18.75rem; // 300px
+        justify-content: "center";
+        align-items: "center";
+    }
+
+    .my-position-button {
+        position: absolute;
+        cursor: pointer;
+        bottom: 1.6rem;
+        left: .625rem;
+        z-index: 800;
+    }
+}
+
+.c-skip {
+    position: absolute;
+    left: -9999px;
+    z-index: 100;
+    width: 100%;
+    margin: 0;
+}
+
+.cookie-consent {
+    background-color: $gray-200;
+    border: solid 1px $gray-300;
+}
+
+// LEAFLET
+.leaflet-container {
+    font: inherit;
+
+    a.btn-primary {
+        color: $white;
+    }
+}
+.leaflet-control-layers-toggle {
+    background-image: url(/media/leaflet/layers.png);
+}
+.leaflet-retina .leaflet-control-layers-toggle {
+    background-image: url(/media/leaflet/layers-2x.png);
+}
+.leaflet-default-icon-path {
+    background-image: url(/media/leaflet/marker-icon.png);
+}
+
+// LEAFLET markercluster overrides
+// url: https://github.com/Leaflet/Leaflet.markercluster/blob/master/dist/MarkerCluster.Default.css
+.marker-cluster div {
+    font-weight: bold;
+}
+.marker-cluster-small {
+    background-color: rgba(181, 226, 140, 1);
+}
+.marker-cluster-small div {
+    background-color: rgba(110, 204, 57, 1);
+}
+
+.marker-cluster-medium {
+    background-color: rgba(241, 211, 87, 1);
+}
+.marker-cluster-medium div {
+    background-color: rgba(240, 194, 12, 1);
+}
+
+.marker-cluster-large {
+    background-color: rgba(253, 156, 115, 1);
+}
+.marker-cluster-large div {
+    background-color: rgba(241, 128, 23, 1);
+}
+
+// LEAFLET fullscreen overrides
+.fullscreen-icon { background-image: url($leaflet-fullscreen-icon-path + 'icon-fullscreen.png'); }
+.leaflet-retina .fullscreen-icon { background-image: url($leaflet-fullscreen-icon-path + 'icon-fullscreen-2x.png'); background-size: 26px 26px; }

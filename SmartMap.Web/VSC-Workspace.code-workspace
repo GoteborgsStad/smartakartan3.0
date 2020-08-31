@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "wwwroot"
+		},
+		{
+			"path": "Views"
+		}
+	],
+	"settings": {}
+}

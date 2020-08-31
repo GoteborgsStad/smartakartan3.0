@@ -1,0 +1,66 @@
+﻿@model SmartMap.Web.ViewModels.TopBarViewModel
+
+<div class="c-skip">
+    <a href="#main">skip</a>
+</div>
+
+<script>
+    sk = (typeof sk === 'undefined') ? {} : sk;
+    sk.state = (typeof sk.state === 'undefined') ? [] : sk.state;
+    sk.state = sk.state.concat([
+        { key: 'common.region', value: '@Html.Raw(Model.Region)' },
+        { key: 'common.languagecode', value: '@Model.LanguageCode' },
+        { key: 'common.baseurl', value: '@Model.BaseUrl'},
+    ]);
+</script>
+
+<header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm fixed-top navbar-light mb-3">
+        <div class="container">
+            <a class="navbar-brand mb-0 h1 d-none d-sm-block" href="/@Model.LanguageCode">
+                <img src="/media/sk-logotype-topbar.png" width="30" height="30" class="d-inline-block align-top" alt="@Model.Translations["topbar.logotype-alt-text"]">
+                <span class="mt-1">@Model.Translations["topbar.header"]@(string.IsNullOrEmpty(Model.Region) ? "" : " | ")@(Model.Region)</span>
+            </a>
+
+            <a class="navbar-brand mb-0 h1 d-block d-sm-none" href="/@Model.LanguageCode">
+                <img src="/media/sk-logotype-topbar.png" width="30" height="30" class="d-inline-block align-top" alt="@Model.Translations["topbar.logotype-alt-text"]">
+                <span class="mt-1">@(string.IsNullOrEmpty(Model.Region) ? Model.Translations["topbar.header"] : Model.Region)</span>
+            </a>
+
+            <button class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target=".navbar-collapse"
+                    aria-controls="navbar-content"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div id="navbar-content" class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <ul class="navbar-nav">
+
+                    @foreach (var p in Model.Pages)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" href="/@p.UrlPath">@p.PageName</a>
+                        </li>
+                    }
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-dark dropdown-toggle" href="#" id="city-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @Model.Translations["topbar.choose-region-menu"]
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="city-dropdown">
+                            @foreach (var r in Model.Regions)
+                            {
+                                var name = r.Name.ToLower() == "global" ? Model.Translations["topbar.all-regions"] : r.Name;
+                                <a class="dropdown-item" href="/@r.UrlPath">@name</a>
+                            }
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>

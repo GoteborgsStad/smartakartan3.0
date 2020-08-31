@@ -1,0 +1,46 @@
+﻿@model SmartMap.Web.ViewModels.FooterViewModel
+
+<footer class="footer pt-4 py-md-5 border-top">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-6 col-md">
+                <strong class="h3">@Model.RegionTitle</strong>
+                <ul class="list-unstyled text-small">
+                    @foreach (var page in Model.LeftFooterPages)
+                    {
+                        <li><a class="text-muted" href="@(page.UrlPath)">@(page.PageName)</a></li>
+                    }
+                </ul>
+            </div>
+
+            <div class="col-6 col-md">
+                <strong class="h3">@Model.Header</strong>
+                <ul class="list-unstyled text-small">
+                    @foreach (var page in Model.CenterFooterPages)
+                    {
+                        <li><a class="text-muted" href="@(page.UrlPath)">@(page.PageName)</a></li>
+                    }
+                </ul>
+            </div>
+
+            <div class="col-6 col-md">
+                <strong class="h3">@Model.Translations["footer.right-title"]</strong>
+                <ul class="list-unstyled text-small">
+                    @foreach (var page in Model.RightFooterPages)
+                    {
+                        <li><a class="text-muted" href="@(page.UrlPath)">@(page.PageName)</a></li>
+                    }
+                </ul>
+                <strong class="h3">@Model.Translations["footer.language-title"] <i class="fas fa-globe-europe"></i></strong>
+                <ul class="list-unstyled text-small">
+                    @foreach (var l in Model.Languages)
+                    {
+                        <li><a class="text-muted" href="@l.Url">@l.Text</a></li>
+                    }
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</footer>

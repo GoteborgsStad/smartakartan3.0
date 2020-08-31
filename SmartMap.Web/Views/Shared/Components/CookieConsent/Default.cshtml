@@ -1,0 +1,18 @@
+﻿@model SmartMap.Web.ViewModels.CookieConsentViewModel
+
+@if (Model.ShowCookieConsent)
+{
+    <div id="cookie-consent-popup" class="fixed-bottom cookie-consent">
+        <div class="container">
+            <div class="d-flex align-items-center p-2">
+                <div class="flex-grow-1">
+                    @Model.Translations["cookieconsent.info"]
+                    <span class="ml-1">
+                        <a href="@Model.Translations["cookieconsent.linkurl"]">@Model.Translations["cookieconsent.link"]</a>
+                    </span>
+                </div>
+                <button class="btn btn-outline-primary px-4" id="cookie-consent-btn">@Model.Translations["cookieconsent.button"]</button>
+            </div>
+        </div>
+    </div>
+}
