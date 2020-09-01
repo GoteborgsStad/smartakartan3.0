@@ -1,7 +1,7 @@
 # Smarta kartan 3.0
 More info coming...
 
-###### Tech Stack
+### Tech Stack
 **Public User Site**
 - Frontend
   - Webpack 4.x (npm)
@@ -25,5 +25,5 @@ More info coming...
     - WordPress REST API Authentication
     - WP Webhooks
 
-###### Hosting
+### Hosting
 Hosted on Microsoft Azure and Elastic Cloud.
