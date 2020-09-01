@@ -1,5 +1,5 @@
-# Smarta kartan 3.0
-More info coming...
+# Smarta Kartan 3.0
+Go to [smartakartan.se](https://www.smartakartan.se/)
 
 ### Tech Stack
 **Public User Site**
