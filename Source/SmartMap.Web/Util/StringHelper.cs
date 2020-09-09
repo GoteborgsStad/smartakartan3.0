@@ -23,7 +23,7 @@ namespace SmartMap.Web.Util
             return WebUtility.HtmlDecode(result);
         }
 
-        public static string FormatPhone(int? phone)
+        public static string FormatPhone(long? phone)
         {
             if (!phone.HasValue) return "";
 
@@ -35,6 +35,8 @@ namespace SmartMap.Web.Util
                 "7" => $"{phone:0###-######}",
                 "8" => $"{phone:0#-########}",
                 "4" => $"{phone:0##-######}",
+                "6" => $"{phone:0##-######}",
+                "5" => $"{phone:0##-######}",
                 "3" => (phoneLength == 9) ? $"{phone:0##-#######}" : $"{phone:0##-######}",
                 _ => $"{phone:0##-#######}"
             };

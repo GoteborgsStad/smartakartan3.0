@@ -16,7 +16,7 @@ namespace SmartMap.Web.ViewModels
         public string AddressAndCoordinatesJson { get; set; }
         public OpeningHoursModel OpeningHours { get; set; }
         public string Email { get; set; }
-        public int? Phone { get; set; }
+        public long? Phone { get; set; }
         public string PhoneFormatted { get; set; }
         public string InstagramUsername { get; set; }
         public string FacebookUrl { get; set; }

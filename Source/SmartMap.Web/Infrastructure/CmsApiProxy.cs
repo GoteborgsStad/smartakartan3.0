@@ -631,7 +631,7 @@ namespace SmartMap.Web.Infrastructure
         public string Website_url { get; set; }
         public string Online_only { get; set; }
         public string Email { get; set; }
-        public int? Phone { get; set; }
+        public long? Phone { get; set; }
         public ImageCmsModel Main_image { get; set; }
     }
 

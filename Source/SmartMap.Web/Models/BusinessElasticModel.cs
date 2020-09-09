@@ -42,7 +42,7 @@ namespace SmartMap.Web.Models
         public string LanguageCode { get; set; }
         public IList<AddressAndCoordinateModel> AddressAndCoordinates { get; set; }
         public string Email { get; set; }
-        public int? Phone { get; set; }
+        public long? Phone { get; set; }
         public IList<string> Tags { get; set; }
         public IList<int> VisibleForCities { get; set; }
         public DateTime Created { get; set; }
