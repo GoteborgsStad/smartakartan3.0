@@ -10,19 +10,22 @@
     sk.state = sk.state.concat([
         { key: 'common.region', value: '@Html.Raw(Model.Region)' },
         { key: 'common.languagecode', value: '@Model.LanguageCode' },
-        { key: 'common.baseurl', value: '@Model.BaseUrl'},
+        { key: 'common.baseurl', value: '@Model.RootUrl'},
     ]);
 </script>
 
 <header>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm fixed-top navbar-light mb-3">
         <div class="container">
-            <a class="navbar-brand mb-0 h1 d-none d-sm-block" href="/@Model.LanguageCode">
+            <a class="navbar-brand mb-0 h1 d-none d-sm-block" href="@Model.BasePartialUrl">
                 <img src="/media/sk-logotype-topbar.png" width="30" height="30" class="d-inline-block align-top" alt="@Model.Translations["topbar.logotype-alt-text"]">
-                <span class="mt-1">@Model.Translations["topbar.header"]@(string.IsNullOrEmpty(Model.Region) ? "" : " | ")@(Model.Region)</span>
+                <span class="mt-1">@Model.Translations["topbar.header"]</span>
+            </a>
+            <a class="navbar-brand mb-0 h1 d-none d-sm-block" href="@Model.RegionUrl">
+                <span class="mt-1">@(string.IsNullOrEmpty(Model.Region) ? "" : " | ")@(Model.Region)</span>
             </a>
 
-            <a class="navbar-brand mb-0 h1 d-block d-sm-none" href="/@Model.LanguageCode">
+            <a class="navbar-brand mb-0 h1 d-block d-sm-none" href="@Model.RegionUrl">
                 <img src="/media/sk-logotype-topbar.png" width="30" height="30" class="d-inline-block align-top" alt="@Model.Translations["topbar.logotype-alt-text"]">
                 <span class="mt-1">@(string.IsNullOrEmpty(Model.Region) ? Model.Translations["topbar.header"] : Model.Region)</span>
             </a>

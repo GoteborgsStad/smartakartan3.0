@@ -7,8 +7,10 @@ namespace SmartMap.Web.ViewModels
         public List<RegionViewModel> Regions { get; set; }
         public List<PageViewModel> Pages { get; set; }
         public string Region { get; set; }
+        public string RegionUrl { get; set; }
         public string LanguageCode { get; set; }
-        public string BaseUrl { get; set; }
+        public string BasePartialUrl { get; set; }
+        public string RootUrl { get; set; }
         public Dictionary<string, string> Translations { get; set; }
 
         public class RegionViewModel

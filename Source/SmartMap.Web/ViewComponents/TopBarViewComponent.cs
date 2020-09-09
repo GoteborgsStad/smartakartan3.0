@@ -27,6 +27,8 @@ namespace SmartMap.Web.ViewComponents
             var region = regionValue?.Region;
             var (regionPagesUrl, _, regionTitle, regions) = await _cmsApiProxy.GetRegionList(region, language);
 
+            var baseUrl = $"/{language}";
+
             var model = new TopBarViewModel
             {
                 Regions = regions.Select(n => new TopBarViewModel.RegionViewModel
@@ -36,13 +38,14 @@ namespace SmartMap.Web.ViewComponents
                     UrlPath = GetRegionUrlPath(language, n.Url_path)
                 }).ToList(),
                 Region = regionTitle,
-                LanguageCode = language
+                LanguageCode = language,
+                BasePartialUrl = baseUrl
             };
 
             var pages = await _cmsApiProxy.GetPages(language, regionPagesUrl);
 
             var urlList = new List<string>();
-            string partialUrl = string.Empty;
+            var partialUrl = string.Empty;
 
             if (!string.IsNullOrEmpty(language))
                 urlList.Add(language);
@@ -52,6 +55,8 @@ namespace SmartMap.Web.ViewComponents
 
             if (urlList.Any())
                 partialUrl = string.Join("/", urlList);
+
+            model.RegionUrl = $"/{partialUrl}";
 
             // Get only top menu pages
             model.Pages = pages
@@ -63,7 +68,7 @@ namespace SmartMap.Web.ViewComponents
                     UrlPath = !string.IsNullOrEmpty(partialUrl) ? $"{partialUrl}/{n.Slug}" : n.Slug
                 }).ToList();
 
-            model.BaseUrl = $"{Request.Scheme}://{Request.Host}";
+            model.RootUrl = $"{Request.Scheme}://{Request.Host}";
 
             model.Translations = await _cmsApiProxy.GetTranslationsByPrefix(language, "topbar.");
 
