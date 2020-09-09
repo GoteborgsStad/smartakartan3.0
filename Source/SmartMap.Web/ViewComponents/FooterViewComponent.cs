@@ -46,6 +46,8 @@ namespace SmartMap.Web.ViewComponents
 
             if (regionPagesUrl != CmsVariable.DefaultPageApiPath)
             {
+                urlList = new List<string>();
+
                 if (!string.IsNullOrEmpty(language))
                     urlList.Add(language);
 
